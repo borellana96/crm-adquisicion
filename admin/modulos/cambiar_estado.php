@@ -1,0 +1,43 @@
+<?php
+check_admin();
+$id = clear($id);
+$s = $mysqli->query("SELECT * FROM pedidos WHERE id = '$id'");
+$r = mysqli_fetch_array($s);
+
+if(isset($modificar)){
+
+	$estado = clear($estado);
+
+	$mysqli->query("UPDATE pedidos SET estado = $estado WHERE id = '$id'");
+	redir("?p=admin_pedidos");
+
+}
+
+if(isset($eliminar)){
+	$eliminar = clear($eliminar);
+
+	$mysqli->query("DELETE FROM pedidos WHERE id_compra = '$eliminar'");
+
+	$mysqli->query("DELETE FROM pedidos WHERE id = '$eliminar'");
+	redir("?p=admin_pedidos");
+
+}
+
+?>
+<h1>Manejar Status</h1>
+<br>
+<form method="post" action="">
+	<div class="form-group">
+		<select class="form-control" name="estado">
+			<option <?php if($r['estado'] == 0) { echo "selected"; } ?> value="0">Ordenado</option>
+			<option <?php if($r['estado'] == 1) { echo "selected"; } ?> value="1">Preparando</option>
+			<option <?php if($r['estado'] == 2) { echo "selected"; } ?> value="2">Transito</option>
+			<option <?php if($r['estado'] == 3) { echo "selected"; } ?> value="3">Despachado</option>
+			<option <?php if($r['estado'] == 4) { echo "selected"; } ?> value="4">Aduanas</option>
+		</select>
+	</div>
+
+	<div class="form-group">
+		<input class="btn btn-primary" type="submit" value="Set Status" name="modificar"/>
+	</div>
+</form>
