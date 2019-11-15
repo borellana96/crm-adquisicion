@@ -168,10 +168,7 @@ while($r=mysqli_fetch_array($q)){
 			}else{
 				$preciototal = $r['price'];
 			}
-	?>
-	
-
-				
+	?>				
 		<div class="producto">
 			<div class="name_producto" style="background-color: #42a5f5"> <?=$r['name']?>
 				<span align="right">
@@ -199,7 +196,7 @@ while($r=mysqli_fetch_array($q)){
 			
 			<button class="btn pull-right" onclick="agregar_carro('<?=$r['id']?>');" style=" background-color:#00838f;border-radius:0px 4px 4px 0px; font-size: 18px !important;" width="150px"><i class="fa fa-shopping-cart"></i></button>
 			&nbsp; &nbsp;
-			<input style="width: 40px !important; height: 36px !important;" type="number" id="cant<?=$r['id']?>" name="cant" style="font-size: 15px;" class="cant pull-right" value="1"/>
+			<input style="width: 40px !important; height: 36px !important;" type="number" id="cant<?=$r['id']?>" name="cant" style="font-size: 15px;" class="cant pull-right" value="1" min="1"/>
 		</div>
 
 	<?php
@@ -242,9 +239,9 @@ while($r=mysqli_fetch_array($q)){
 			<div><img  class="img_producto ver_product"  product="<?php echo $r['name']; ?>" src="<?=$r['imagen']?>" style="width: 100%;"/></div><br>
 			<del style=" font-size: 18px "><?=$divisa?> <?=$r['price']?> </del> <span class="precio" style=" font-size: 20px "><?=$divisa?> <?=$preciototal?>  </span>
 			
-			<button class="btn pull-right" onclick="agregar_carro('<?=$r['id']?>');" style=" background-color:#00838f;border-radius:0px 4px 4px 0px; font-size: 18px !important;" width="150px"><i class="fa fa-shopping-cart"></i></button>
+			<button class="btn pull-right" type="submit" onclick="agregar_carro('<?=$r['id']?>');" style=" background-color:#00838f;border-radius:0px 4px 4px 0px; font-size: 18px !important;" width="150px"><i class="fa fa-shopping-cart"></i></button>
 			&nbsp; &nbsp;
-			<input style="width: 40px !important; height: 36px !important;" type="number" id="cant<?=$r['id']?>" name="cant" style="font-size: 15px;" class="cant pull-right" value="1"/>
+			<input style="width: 40px !important; height: 36px !important;" type="number" id="cant<?=$r['id']?>" name="cant" style="font-size: 15px;" class="cant pull-right" value="1" min="1"/>
 		</div>
 	<?php
 }

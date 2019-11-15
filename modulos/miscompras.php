@@ -5,8 +5,8 @@ if(mysqli_num_rows($s)>0){
 	?>
 	<h1 style="font-size: 18px;">Mis compras</h1>
 
-	<table style="font-size: 16px;" class="table table-stripe">
-		<tr>
+	<table style="font-size: 16px;" class="table table-bordered">
+		<tr class="thead-dark">
 			<th>Fecha</th>
 			<th>Monto</th>
 			<td>Estado</td>
@@ -21,15 +21,18 @@ if(mysqli_num_rows($s)>0){
 			<td><?=$divisa?><?=number_format($r['monto'])?> </td>
 			<td><?=estado($r['estado'])?></td>
 			<td>
-				<a href="?p=ver_compra&id=<?=$r['id']?>">
-					<i class="fa fa-eye"></i>
+				<?php
+					if($r['estado'] == 0){
+				?>
+				&nbsp; &nbsp; <a class="btn btn-success" title="Pagar" href="?p=pagar_compra&id=<?=$r['id']?>">Pagar</a>
+				<?php
+					} else{
+				?>	
+				<a  class="btn btn-info" href="?p=ver_compra&id=<?=$r['id']?>">
+					<i class="fa fa-eye"></i>&nbsp;Ver Detalles
 				</a>
 
 				<?php
-					if(estado($r['estado']) == "Iniciando"){
-						?>
-							&nbsp; &nbsp; <a title="Pagar" href="?p=pagar_compra&id=<?=$r['id']?>"><b>P</b></a>
-						<?php
 					}
 				?>
 			</td>

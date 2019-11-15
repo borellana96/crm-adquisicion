@@ -17,12 +17,5 @@ include "../configs/funciones.php";
 			echo "error";
 			exit;
 		}
-	
-
-	
-
-	
-	
-
 
  ?>

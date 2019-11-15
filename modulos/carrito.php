@@ -16,35 +16,30 @@ if(isset($id) && isset($modificar)){
 	$mysqli->query("UPDATE carro SET cant = '$modificar' WHERE id = '$id'");
 	alert("Cantidad modificada",1,'carrito');
 	//redir("?p=carrito");
-
-
 }
 
 if(isset($finalizar)){
 //obtengo el monto total del pedido
-	$monto = clear($monto_total);
-
-	$id_cliente = clear($_SESSION['id_cliente']);
-	$q = $mysqli->query("INSERT INTO pedidos (id_cliente,fecha,monto,estado) VALUES ('$id_cliente',NOW(),'$monto',0)");
-
+	$monto =(float)  clear($monto_total);
+	$hoy = date("Y-m-d H:i:s");
+	$direccion = clear($direc);
+	$id_cliente =(integer) clear($_SESSION['id_cliente']);
+	$q = $mysqli->query("INSERT INTO pedidos (id_cliente,fecha,direccion,monto,estado) 
+		VALUES ('$id_cliente','$hoy','$direccion','$monto',0)");
 	$sc = $mysqli->query("SELECT * FROM pedidos WHERE id_cliente = '$id_cliente' ORDER BY id DESC LIMIT 1");
 	$rc = mysqli_fetch_array($sc);
 	//obtenemos la ultima compra(pedido)
 	//ultima compra guarda el id del pedido!
 	$ultima_compra = $rc['id'];
-
-
 	$q2 = $mysqli->query("SELECT * FROM carro WHERE id_cliente = '$id_cliente'");
 	//obtenemos todos los productos del carrito q sea del cliente,
 	while($r2=mysqli_fetch_array($q2)){
-
 		$sp = $mysqli->query("SELECT * FROM productos WHERE id = '".$r2['id_producto']."'");
 		$rp = mysqli_fetch_array($sp);
 			//rp es un producto, del carrito
 		$monto = $rp['price'];
 
 		$mysqli->query("INSERT INTO compra_detalle (id_pedido,id_producto,cantidad,monto) VALUES ('$ultima_compra','".$r2['id_producto']."','".$r2['cant']."','$monto')");
-
 	}
 	//eliminamos el carro del cliente!
 	$mysqli->query("DELETE FROM carro WHERE id_cliente = '$id_cliente'");
@@ -59,16 +54,15 @@ if(isset($finalizar)){
 
 }
 ?>
-
 <h1><i class="fa fa-shopping-cart"></i> Carro de Compras</h1>
 <br><br>
 
-<table class="table table-striped" style="font-size: 15px;">
-	<tr>
+<table class="table table-bordered" style="font-size: 15px;">
+	<tr class="thead-dark">
 		<th><i class="fa fa-image"></i></th>
 		<th>Nombre del producto</th>
 		<th>Cantidad</th>
-		<th>Precio por unidad</th>
+		<th>Precio unitario</th>
 		<th>Oferta</th>
 		<th>Precio Total</th>
 		<th>Precio Neto</th>
@@ -125,8 +119,10 @@ while($r = mysqli_fetch_array($q)){
 			<td><?=$divisa?><?=$preciototal?></td>
 			<td><?=$divisa?><?=$precio_total?> </td>
 			<td>
-				<a onclick="modificar('<?=$r['id']?>')" href="#"><i class="fa fa-edit" title="Modificar cantidad en carrito"></i></a>
-				<a href="?p=carrito&eliminar=<?=$r['id']?>"><i class="fa fa-times" title="Eliminar"></i></a>
+				<a onclick="modificar('<?=$r['id']?>')" class="btn btn-lg btn-warning" href="#">
+					<i class="fa fa-edit" title="Modificar cantidad en carrito"></i>&nbsp; Editar</a>
+
+				<a href="?p=carrito&eliminar=<?=$r['id']?>" class="btn btn-lg btn-danger"><i class="fa fa-trash" title="Eliminar"></i></a>
 			</td>
 		</tr>
 	<?php
@@ -140,13 +136,7 @@ while($r = mysqli_fetch_array($q)){
 <?php  if(!$monto_total==0){
 ?>
 <form method="post" action="">
-		
-	
-
-
-
-   <div class="form-group">
-  
+   <div class="form-group">  
  <label style="font-size: 18px;" for="exampleInputEmail1">Elija el departamento</label>
     <select class="form-control" style="font-size: 18px;" name="depa" id="exampleFormControlSelect1">
       <option>Lima</option>
@@ -156,11 +146,9 @@ while($r = mysqli_fetch_array($q)){
       <option>Piura</option>
     </select>
   </div>
-
 	<div class="form-group">
    	 <label style="font-size: 18px;" for="exampleInputEmail1">Ingrese la dirección de envio a domicilio</label>
     	<input type="text" style="font-size: 18px;" class="form-control" name="direc" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Dirección" required>
-
   	</div>
 
   	<p></br></p>

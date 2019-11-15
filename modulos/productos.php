@@ -11,6 +11,12 @@ if(isset($cat)){
 	<?php
 }
 
+if(isset($busq) AND $busq !== ""){
+	?>
+	<h1>Producto buscado por: '<?=$busq?>'</h1>
+	<?php
+}
+
 if(isset($agregar) && isset($cant)){
 
 	$idp = clear($agregar);
@@ -24,23 +30,21 @@ if(isset($agregar) && isset($cant)){
 		$q = $mysqli->query("UPDATE carro SET cant = cant + $cant WHERE id_cliente = '$id_cliente' AND id_producto = '$idp'");
 	
 	}else{
-
 		$q = $mysqli->query("INSERT INTO carro (id_cliente,id_producto,cant) VALUES ($id_cliente,$idp,$cant)");
-
 	}
-
 	alert("Se ha agregado al carro de compras",1,'productos');
 	//redir("?p=productos");
 }
 
-if(isset($busq) && isset($cat)){
+if(isset($busq) && $busq !== "" && isset($cat) && $cat!=="") {
 	$q = $mysqli->query("SELECT * FROM productos WHERE name like '%$busq%' AND id_categoria = '$cat'");
-}elseif(isset($cat) && !isset($busq)){
+
+}elseif(isset($cat) && $cat!=="" && $busq==""){
 	$q = $mysqli->query("SELECT * FROM productos WHERE id_categoria = '$cat' ORDER BY id DESC");
-}elseif(isset($busq) && !isset($cat)){
-	$q = $mysqli->query("SELECT * FROM productos WHERE name like '%$busq%'");
-}elseif(!isset($busq) && !isset($cat)){
-	$q = $mysqli->query("SELECT * FROM productos ORDER BY id DESC");
+}elseif(isset($busq) && $busq!=="" && $cat == ""){
+	$q = $mysqli->query("SELECT * FROM productos WHERE name like '%$busq%' ORDER BY id DESC");
+}elseif(!isset($busq)  && !isset($cat)){
+	$q = $mysqli->query("SELECT * FROM productos ORDER BY id DESC");	
 }else{
 	$q = $mysqli->query("SELECT * FROM productos ORDER BY id DESC");
 }
@@ -69,7 +73,7 @@ if(isset($busq) && isset($cat)){
 			</div>
 
 			<div class="col-md-2">
-				<button style="font-size: 18px;" type="submit" class="btn btn-primary" name="buscar"><i class="fa fa-serch"></i> Buscar</button>
+				<button style="font-size: 18px;" type="submit" class="btn btn-primary" name="buscar"><i class="fa fa-search"></i> Buscar</button>
 			</div>
 		</div>
 	</form>

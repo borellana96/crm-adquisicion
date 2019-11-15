@@ -113,7 +113,7 @@ function fechahora($fecha){
 
 function estado($id_estado){
 		if($id_estado == 0){
-			$status = "Ordenado";
+			$status = "Sin pagar";
 		}elseif($id_estado==1){
 			$status = "Preparando";
 		}elseif($id_estado == 2){
@@ -148,7 +148,7 @@ function dinero_ventas(){
 	$mysqli = connect();
 	$x1 = $mysqli->query("SELECT SUM(monto) as total from pedidos");
 	$w1 = mysqli_fetch_array($x1);
-	$din = $w1['total'];
+	$din = round($w1['total'],2);
 	return $din;
 }
 

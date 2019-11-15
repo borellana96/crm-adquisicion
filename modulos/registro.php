@@ -36,10 +36,10 @@ if(isset($enviar)){
 
 
 
-	$mysqli->query("INSERT INTO clientes (id,nombres,apellidos,email,password,nacimiento,sexo,direccion,inscripcion)
-
+	$mysqli->query("INSERT INTO clientes (nombres,apellidos,email,password,nacimiento,sexo,
+		direccion,inscripcion)
 		 VALUES 
-		(null, '$nombre','$apellido' ,'$email','$password','$fechaNac','$sexo','en tuc erro', '1999-09-09')");
+		('$nombre','$apellido' ,'$email','$password','$fechaNac','$sexo','' ,'$fechaNac')");
 
 	$q2 = $mysqli->query("SELECT * FROM clientes WHERE email = '$email'");
 
@@ -104,12 +104,12 @@ if(isset($enviar)){
 		<h2 style="font-weight: bold;">Seleccione su sexo</h2>
 
 		<div class="form-check form-check-inline">
- 		 <input class="form-check-input" type="radio" name="sexo" id="inlineRadio1" value="option1">
+ 		 <input class="form-check-input" type="radio" name="sexo" id="inlineRadio1" value="Masculino">
  		 <label class="form-check-label"  style="font-size: 18px; font-weight: lighter;" for="inlineRadio1">Masculino</label>
 		</div>
 
 		<div class="form-check form-check-inline">
-  			<input class="form-check-input" type="radio" name="sexo" id="inlineRadio2" value="option2">
+  			<input class="form-check-input" type="radio" name="sexo" id="inlineRadio2" value="Femenino">
   			<label class="form-check-label" for="inlineRadio2" style="font-size: 18px;  font-weight: lighter;">Femenino</label>
 		</div>
 	</div>

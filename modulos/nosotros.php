@@ -14,9 +14,9 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
- <!-- <link rel="stylesheet" href="public/bower_components/bootstrap/dist/css/bootstrap.min.css"> -->
+ <link rel="stylesheet" href="public/bower_components/bootstrap/dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
-<!--  <link rel="stylesheet" href="public/bower_components/font-awesome/css/font-awesome.min.css"> -->
+ <link rel="stylesheet" href="public/bower_components/font-awesome/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="public/bower_components/Ionicons/css/ionicons.min.css">
   <!-- Theme style -->
@@ -29,17 +29,10 @@
 <style>
             body{
                 margin: 0;
-                padding:0;
-                
-            
-            
-               /* background-image: url(https://tienda.asbatoys.com.mx/wp-content/uploads/2018/09/fondo-1.jpg);*/
-                
+                padding:0;  
             }
     </style>  
-<body>
- 
-  
+<body>   
   <!-- Encabezado -->
     <div class="container-fluid">
         <div class="row">
@@ -50,42 +43,21 @@
                                 <div>
                                   <center>
                                     <a style="text-decoration: none; font-size: 30px;" href="index.php">
-                                      BIENVENIDO
+                                      BIENVENIDO A
                                     </a>
                               
                                     
-               <a style="text-decoration: none;" href="index.php"><img src="https://scontent.flim18-3.fna.fbcdn.net/v/t1.15752-9/62504861_2373546986260076_3488111737591300096_n.png?_nc_cat=101&_nc_ht=scontent.flim18-3.fna&oh=0ccc669f227ed8b1efd72d150f41cebb&oe=5D9D4E72" width="400" height="400"> </a>
+               <a style="text-decoration: none;" href="index.php"><img src="https://scontent.flim5-4.fna.fbcdn.net/v/t1.15752-9/75513590_2155765694731744_4426643751980498944_n.png?_nc_cat=108&_nc_oc=AQmpi-5umKvrVwK7xhdV0V9KPAC8VAVXvLOH2PEw1QxmkCIldrUSiIc_SmkRttHid68&_nc_ht=scontent.flim5-4.fna&oh=02f94af1638c81ac2fbb6bf469d21f3e&oe=5E86EED6" width="400" height="100"> </a>
                 </center>
-                                </div>
-
-
-                       
-               
+              </div>               
                     </div>
               
                 </div>
-<!--
-                  <div style="">
-                        
-                    <span>
-                      <h4>CONTACTO: </h4>
-                      <h5>
-                        <a href="">
-                          navichicken@gmail.com
-                        </a>
-                      </h5>
-
-                    </span> 
-                           
-                          
-
-                   </div> -->
 
             </div> <!-- fin colsm5-->
-            <!-- Formulario Usuario y Contraseña Botones y la redireccion a recuperar contraseña -->
-            
+            <!-- Formulario Usuario y Contraseña Botones y la redireccion a recuperar contraseña -->            
             <div class="col-sm-7"> 
-            <h2>Aqui unas fotos de proyectos realizados gracias a BuyFISI</h2>  
+            <h2>Aqui unas fotos de proyectos realizados gracias a ElectroFISI</h2>  
             <p></br></p>
       
             <div class="container">
@@ -125,25 +97,17 @@
                 </div>
 
               </div>             
-            </div>
-
-             
-
-               
+            </div>        
             </div>
       </div>
-
-      <div class="row">
-              
-           
+      <div class="row">                  
             <div class="col-sm-6">
-               
             </div>
             <div class="col-sm-6">
                 <h2>
                     <p class="text-center">
                                  
-                        BuyFisi es un portal de 
+                        ElectroFisi es un portal de 
                         compras por internet de
                         productos basados en 
                         plataformas abiertas de 
@@ -160,25 +124,10 @@
             </div>
       </div>
     </div>
- 
-
  <!-- jQuery 3 -->
 <script src="public/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="public/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- iCheck -->
-<script src="public/plugins/iCheck/icheck.min.js"></script>
-<script>
-  $(function () {
-    $('input').iCheck({
-      checkboxClass: 'icheckbox_square-blue',
-      radioClass: 'iradio_square-blue',
-      increaseArea: '20%' // optional
-    });
-  });
-</script>
-
-
 
 </body>
 </html>

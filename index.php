@@ -1,13 +1,11 @@
 <?php
 include "configs/config.php";
-include "configs/funciones.php";
-	
+include "configs/funciones.php";	
 if(!isset($p)){
 	$p = "principal";
 }else{
 	$p = $p;
 }
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -16,9 +14,10 @@ if(!isset($p)){
 	<link rel="stylesheet" href="css/estilo.css"/>
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.css"/>
 	<link rel="stylesheet" href="fontawesome/css/all.css"/>
-	<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+
 	<script type="text/javascript" src="fontawesome/js/all.js"></script>
 	<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
 	<script type="text/javascript" src="js/app.js"></script>
 	<script type="text/javascript" src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 
@@ -26,7 +25,7 @@ if(!isset($p)){
 </head>
 <body>
 	<div  class="header" style="background-color:#004c8c; font-size: 25px; padding:10px;" >
-		Sistema de ventas Online BuyFISI
+		Sistema de ventas Online Electro-Fisi
 		<span align="right" style="font-size: 15px; float: right;"> <a href="admin/">Panel Admin</a> </span>
 	</div>
 	<div class="menu" style="background-color: #0277bd; padding-left: 30px; border-right: 0 !important; margin-right: 0 !important;padding-right: 0 !important;">
@@ -35,26 +34,21 @@ if(!isset($p)){
 			<div class="col-7">
 				<ul class="list-inline">
 					<li class="list-inline-item">
-						<button type="submit" class="btn btn-outline-light" style="font-size: 15px; background-color: #0277bd; padding-right:10px; " onclick="window.location.href='?p=principal'"> PRINCIPAL</button>
+						<input type="hidden" id="p" value="<?=$p?>	">
+						<button type="submit" id="principal" class="btn bg-light" style="font-size: 15px; background-color: #0277bd; padding-right:10px; " onclick="window.location.href='?p=principal'"> PRINCIPAL</button>
 					</li>
 					<li class="list-inline-item">
-						<button type="submit" class="btn btn-success list-inline-item"style=" font-size: 15px; background-color: #0277bd; padding-right:10px;" onclick="window.location.href='?p=productos'">ENCUENTRA TU PRODUCTO!</button>
+						<button type="submit" id="productos" class="btn bg-light list-inline-item"style=" font-size: 15px; background-color: #0277bd; padding-right:10px;" onclick="window.location.href='?p=productos'">ENCUENTRA TU PRODUCTO!</button>
 					</li>
 					<li class="list-inline-item">
-						<button type="submit" class="btn btn-outline-light list-inline-item"style=" font-size: 15px; padding-right:10px;background-color: #0277bd;" onclick="window.location.href='?p=ofertas'"> OFERTAS</button>
+						<button type="submit" id="ofertas" class="btn bg-light list-inline-item"style=" font-size: 15px; padding-right:10px;background-color: #0277bd;" onclick="window.location.href='?p=ofertas'"> OFERTAS</button>
 					</li>
 					<li class="list-inline-item">
-						<button type="submit" class="btn btn-outline-light list-inline-item"style=" font-size: 15px; background-color: #0277bd;" onclick="window.location.href='?p=nosotros'"> NOSOTROS</button>
+						<button type="submit" id="nosotros" class="btn bg-light list-inline-item"style=" font-size: 15px; background-color: #0277bd;" onclick="window.location.href='?p=nosotros'"> NOSOTROS</button>
 						
 					</li>
-
-				</ul>
-				
-		
-			
-				
+				</ul>				
 			</div>
-		
 			<div class="col-5" style="margin-right: 10;
 			padding-right: 	10;">
 				<?php 
@@ -67,48 +61,28 @@ if(!isset($p)){
 					</li>
 					<li class="list-inline-item">
 						<button type="submit"  class="btn btn-outline-light"style=" font-size: 15px; padding-left:10px;background-color: #0277bd;" onclick="window.location.href='?p=registro'"> REGISTRARSE</button>
-
-					</li>
-					
-				
+					</li>				
 				</ul>
 				<?php
 					}else{
-
 						?>
 				<ul class="list-inline">
 					<li class="list-inline-item">
 						<button type="submit"  class="btn btn-info"style=" font-size: 15px; padding-left:10px;background-color: #;" onclick="window.location.href='?p=carrito'"> Mi Carrito</button>
-
 					</li>
 					<li class="list-inline-item">
 						<button type="submit"  class="btn btn-info"style=" font-size: 15px; padding-left:10px;background-color:;" onclick="window.location.href='?p=miscompras'"> Mis Pedidos</button>
-
 					</li>
 						<li class="list-inline-item" style="float: right;"> 
-							<button type="submit"  class="btn btn-dark" style=" font-size: 15px; padding-left:10px;background-color: #;" onclick="window.location.href='?p=salir'"> Cerrar sesión</button>
-						
-					</li>	
-				
-					
+							<button type="submit"  class="btn btn-dark" style=" font-size: 15px; padding-left:10px;background-color: #;" onclick="window.location.href='?p=salir'"> Cerrar sesión</button>						
+					</li>		
 				</ul>						
 					<?php
 						} 
-					?>		
-			
-				
-
-
-			</div>
-
-			
+					?>	
+			</div>			
 		</div>
-		
-		
-
-	</div>
-	
-	
+		</div>	
 	</div> <!-- FIN MENU-->
 
 	<div class="cuerpo">
@@ -133,9 +107,7 @@ if(!isset($p)){
 			}
 
 	?>
-
 	<div class="carritob" style="font-size: 13px;">
-
 		<table class="table table-striped">
 	<tr>
 		<th>Nombre del producto</th>
@@ -149,7 +121,6 @@ $monto_total = 0;
 while($r = mysqli_fetch_array($q)){
 	$q2 = $mysqli->query("SELECT * FROM productos WHERE id = '".$r['id_producto']."'");
 	$r2 = mysqli_fetch_array($q2);
-
 	$preciototal = 0;
 			if($r2['oferta']>0){
 				if(strlen($r2['oferta'])==1){
@@ -162,19 +133,12 @@ while($r = mysqli_fetch_array($q)){
 			}else{
 				$preciototal = $r2['price'];
 			}
-
 	$nombre_producto = $r2['name'];
-
 	$cantidad = $r['cant'];
-
 	$precio_unidad = $r2['price'];
 	$precio_total = $cantidad * $preciototal;
 	$imagen_producto = $r2['imagen'];
-
 	$monto_total = $monto_total + $precio_total;
-
-	
-
 	?>
 		<tr>
 			<td><?=$nombre_producto?></td>
@@ -189,21 +153,46 @@ while($r = mysqli_fetch_array($q)){
 <span>Monto Total: <b class="text-green"><?=$monto_total?> <?=$divisa?></b></span>
 
 <br><br>
-<!--
-<form method="post" action="?p=carrito">
-	<input type="hidden" name="monto_total" value="<?=$monto_total?>"/>
-	<button class="btn btn-primary" type="submit" name="finalizar"><i class="fa fa-check"></i> Finalizar Compra</button>
-</form>
--->
 	</div>
-
-
-
 </body>
 </html>
 
 <script type="text/javascript">
+
+
+$(document).ready(function(){
+   //aquí meteremos las instrucciones que modifiquen el DOM
+	var p= $('#p').val();
+	var p1 = 'productos';
+	var p2 = "principal";
+	var p3 = 'nosotros';
+	var p4 = "ofertas";
+	switch(p.trim()){
+		case String(p1):
+		  $("#productos").removeClass("bg-light");
+			$("#productos").addClass("bg-info");
+		break;
+		case p2:
+		  $("#principal").removeClass("bg-light");
+			$("#principal").addClass("bg-info");
+		break;
+		case p3:
+		  $("#nosotros").removeClass("bg-light");
+			$("#nosotros").addClass("bg-info");
+		break;
+		case p4:
+		  $("#ofertas").removeClass("bg-light");
+			$("#ofertas").addClass("bg-info");
+		break;
+		default:
+		break;
+	}  
+});
+
 	
+
+
+
 	function minimizer(){
 
 		var minimized = $("#minimized").val();

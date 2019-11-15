@@ -17,15 +17,24 @@ $nombre = $rc['nombres'];
 ?>
 <h1>Viendo compra #<span style="color:#08f"><?=$r['id']?></span></h1><br>
 
-Fecha: <?=fecha($r['fecha'])?><br>
-Monto: <?=$divisa?> <?=number_format($r['monto'])?><br>
-Estado: <?=estado($r['estado'])?><br>
+<span style="font-size: 16px;"> Fecha: &nbsp;</span> 
+<label for="fecha"  style="font-size: 16px;" class="label label-primary"><?=fecha($r['fecha'])?>
+</label>
+ <br><br>
+ <span style="font-size: 16px;">Monto:&nbsp;
+</span>
+<label for="monto" style="font-size: 16px;" class="label label-primary"> <?=$divisa?> <?=number_format($r['monto'])?></label> 
+<br><br>
+ <span style="font-size: 16px;">Estado:
+</span>
+<label for="estado" style="font-size: 16px;" class="label label-primary"><?=estado($r['estado'])?> </label> 
 <br>
-<table class="table table-striped">
-	<tr>
+<br>
+<table class="table table-bordered">
+	<tr class="thead-dark" style="font-size: 14px;" >
 		<th>Nombre del producto</th>
 		<th>Cantidad</th>
-		<th>Monto</th>
+		<th>Precio</th>
 		<th>Monto Total</th>
 		<th>Acciones</th>
 	</tr>
@@ -40,14 +49,14 @@ Estado: <?=estado($r['estado'])?><br>
 
 			$montototal = $rp['monto'] * $rp['cantidad'];
 			?>
-				<tr>
+				<tr style="font-size: 14px;">
 					<td><?=$nombre_producto?></td>
 					<td><?=$rp['cantidad']?></td>
 					<td><?=$rp['monto']?></td>
 					<td><?=$montototal?></td>
 					<td>
 						<?php if($r['estado']==0) {?>
-									<button href="#" class="btn btn-success">Pagar</button>
+									<button href="#" class="btn btn-lg btn-success">Pagar</button>
 							<?php 
 								}else {
 
