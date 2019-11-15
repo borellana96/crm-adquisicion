@@ -154,11 +154,88 @@ while($r = mysqli_fetch_array($q)){
 
 <br><br>
 	</div>
+	<div class="modal" id="exampleModal" tabindex="-1" role="dialog" >
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+      	<center>
+      		<label for="" id="name-show" style="font-size: 18px;" ></label>
+      	</center>
+      	
+        <!-- <input type="text" id="name-show" readonly="" style="font-size: 18px;"> -->
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span  style="font-size: 16px;" aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      	<div class="row">
+      		<div class="col-md-6">
+      			<img src="./productos/arduino.png" id="imagen-show" alt="arduino" width="300">
+      		</div>
+      		<div class="col-md-6">
+      			<div class="row">
+      				<div class="col-md-12">
+      					<div class="form-group">
+	      					<label for="" style="font-size: 16px;">Stock</label>
+	      					<input type="text" id="stock-show" readonly=""  style="font-size: 16px;" class="form-control">      						
+      				</div> 
+      				</div>
+     					
+      				<div class="col-md-6">
+      					<div class="form-group">
+      						<label for="" style="font-size: 16px;">Precio(sin oferta)</label>
+      						<del class="form-control" id="price-show"  style="font-size: 16px;" readonly></del>     						
+      					</div>      					
+      				</div>
+      				<div class="col-md-6">
+      					<div class="form-group">
+      						<label for="" style="font-size: 16px;">Oferta</label>
+      						<input type="text" id="oferta-show"  style="font-size: 16px; font-weight: bold" readonly="" class="form-control">      						
+      					</div>      					
+      				</div>      				
+      			</div>
+      			<div class="form-group">
+      				<label for="" style="font-size: 16px;">Descripción del producto</label>
+      				<textarea name="" id="descripcion-show"  style="font-size: 16px;"
+      				cols="30" rows="3" readonly="" class="form-control" readonly="">      					
+      				</textarea>      				
+      			</div>
+      		</div>      		
+      	</div>        
+      </div>
+      <div class="modal-footer">        
+        <button type="button" class="btn btn-lg btn-danger pull-right" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
 
 <script type="text/javascript">
+	$('#exampleModal').on('show.bs.modal', function (event) {     
+  var name= $(event.relatedTarget).data('name');
+  var stock= $(event.relatedTarget).data('stock');
+	var price= $(event.relatedTarget).data('price');
+	var oferta= $(event.relatedTarget).data('oferta');
+	var imagen= $(event.relatedTarget).data('imagen');
+	var descripcion= $(event.relatedTarget).data('descripcion');
+	console.log(imagen);
+	$(event.currentTarget).find('#name-show').text(name);
+	$(event.currentTarget).find('#stock-show').val(stock);
+	$(event.currentTarget).find('#price-show').text('S/. '+price);
+	$(event.currentTarget).find('#oferta-show').val('S/. '+oferta);
+	$(event.currentTarget).find('#imagen-show').attr("src",imagen);
+	$(event.currentTarget).find('#descripcion-show').text(descripcion);
+	});
+	function agregar_carro(idp){
 
+		cant = $("#cant"+idp).val();
+
+		if(cant.length>0){
+			window.location="?p=principal&agregar="+idp+"&cant="+cant;
+		}
+	}
 
 $(document).ready(function(){
    //aquí meteremos las instrucciones que modifiquen el DOM

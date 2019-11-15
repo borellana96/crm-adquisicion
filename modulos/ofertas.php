@@ -68,12 +68,24 @@ while($r=mysqli_fetch_array($q)){
 		<div class="producto">
 			<div class="name_producto" style="background-color: #42a5f5"><?=$r['name']?>
 				<span align="right">
-					<a type="" class="ver_product" product="<?php echo $r['name']; ?>" style=" text-decoration: none; float:right;" href="#">
+					<a style="text-decoration: none; float:right;" href="#"
+					 data-toggle="modal" data-target="#exampleModal" data-name="<?php echo $r['name']; ?>"
+					 data-price="<?php echo $r['price']; ?>"  data-oferta="<?php echo $r['oferta']; ?>"
+					 data-imagen="<?php echo $r['imagen']; ?>" data-stock="<?php echo $r['stock']; ?>"
+					 data-descripcion="<?php echo $r['descripcion']; ?>"
+					>
 					 <img src="https://image.flaticon.com/icons/png/512/15/15638.png" width="30px"> </a>
 				</span>
 			</div>
 			<div>
-				<a href="#"><img class="img_producto ver_product"  product="<?php echo $r['name']; ?>"href="#" src="<?=$r['imagen']?>" style="width: 100%;"/></a>
+				<a style="" href="#"
+					 data-toggle="modal" data-target="#exampleModal" data-name="<?php echo $r['name']; ?>"
+					 data-price="<?php echo $r['price']; ?>"  data-oferta="<?php echo $r['oferta']; ?>"
+					 data-imagen="<?php echo $r['imagen']; ?>" data-stock="<?php echo $r['stock']; ?>"
+					 data-descripcion="<?php echo $r['descripcion']; ?>"
+					>		
+					<img  class="img_producto ver_product" src="<?=$r['imagen']?>" style="width: 100%;"/>			
+				</a>
 
 			</div>
 			<p></br></p>
