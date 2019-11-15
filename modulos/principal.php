@@ -106,20 +106,17 @@
 	.text-green{
 		color:#0a0;
 	}
-	.modal{
-
-	}
 }
 </style>
+
+
 <?php
+//include 'modal.php';
+
 if(isset($agregar) && isset($cant)){
-
-
 	if(!isset($_SESSION['id_cliente'])){
 		redir("?p=login");
 	}
-
-
 	$idp = clear($agregar);
 	$cant = clear($cant);
 	$id_cliente = clear($_SESSION['id_cliente']);
@@ -177,7 +174,9 @@ while($r=mysqli_fetch_array($q)){
 				</span>
 			</div>
 			<div>
-				<a href="#"><img class="img_producto ver_product"  product="<?php echo $r['name']; ?>"href="#" src="<?=$r['imagen']?>" style="width: 100%;"/></a>
+				<a href="#" data-toggle="modal" data-target="#exampleModal">
+					<img class="img_producto ver_product"  product="<?php echo $r['name']; ?>"href="#" src="<?=$r['imagen']?>" style="width: 100%;"/>
+				</a>
 
 			</div>
 			<?php
@@ -231,13 +230,19 @@ while($r=mysqli_fetch_array($q)){
 		<div class="producto">
 			<div class="name_producto"  style="background-color: #42a5f5"> <?=$r['name']?>
 				<span align="right">
-					<a type="" class="ver_product" product="<?php echo $r['name']; ?>" style="text-decoration: none; float:right;" href="#">
+					<a style="text-decoration: none; float:right;" href="#"
+					 data-toggle="modal" data-target="#exampleModal" data-name="<?php echo $r['name']; ?>"
+					 data-price="<?php echo $r['price']; ?>"  data-oferta="<?php echo $r['oferta']; ?>"
+					 data-imagen="<?php echo $r['imagen']; ?>" data-stock="<?php echo $r['stock']; ?>"
+					 data-descripcion="<?php echo $r['descripcion']; ?>"
+					>
 					 <img src="https://image.flaticon.com/icons/png/512/15/15638.png" width="30px"> </a>
 				</span>
 			</div>
 
 			<div><img  class="img_producto ver_product"  product="<?php echo $r['name']; ?>" src="<?=$r['imagen']?>" style="width: 100%;"/></div><br>
-			<del style=" font-size: 18px "><?=$divisa?> <?=$r['price']?> </del> <span class="precio" style=" font-size: 20px "><?=$divisa?> <?=$preciototal?>  </span>
+			<del style=" font-size: 18px "><?=$divisa?> <?=$r['price']?> </del> 
+			<span class="precio" style=" font-size: 20px "><?=$divisa?> <?=$preciototal?>  </span>
 			
 			<button class="btn pull-right" type="submit" onclick="agregar_carro('<?=$r['id']?>');" style=" background-color:#00838f;border-radius:0px 4px 4px 0px; font-size: 18px !important;" width="150px"><i class="fa fa-shopping-cart"></i></button>
 			&nbsp; &nbsp;
@@ -246,8 +251,74 @@ while($r=mysqli_fetch_array($q)){
 	<?php
 }
 ?>
+<div class="modal" id="exampleModal" tabindex="-1" role="dialog" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+      	<center>
+      		<label for="" id="name-show" style="font-size: 18px;" ></label>
+      	</center>
+      	
+        <!-- <input type="text" id="name-show" readonly="" style="font-size: 18px;"> -->
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span  style="font-size: 16px;" aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      	<div class="row">
+      		<div class="col-md-6">
+      			<img src="./productos/arduino.png" id="imagen-show" alt="arduino" width="250">
+      		</div>
+      		<div class="col-md-6">
+      			<div class="row">
+      				<div class="form-group">
+      					<label for="">Stock</label>
+      					<input type="text" id="stock-show" readonly=""  style="font-size: 16px;" class="form-control">      						
+      				</div>      					
+      				<div class="col-md-6">
+      					<div class="form-group">
+      						<label for="">Precio(sin oferta)</label>
+      						<del class="form-control" id="price-show"  style="font-size: 16px;" readonly></del>     						
+      					</div>      					
+      				</div>
+      				<div class="col-md-6">
+      					<div class="form-group">
+      						<label for="">Oferta</label>
+      						<input type="text" id="oferta-show"  style="font-size: 16px; font-weight: bold" readonly="" class="form-control">      						
+      					</div>      					
+      				</div>      				
+      			</div>
+      			<div class="form-group">
+      				<label for="">Descripción del producto</label>
+      				<textarea name="" id="descripcion-show"  style="font-size: 16px;"
+      				cols="30" rows="3" readonly="" class="form-control" readonly="">      					
+      				</textarea>      				
+      			</div>
+      		</div>      		
+      	</div>        
+      </div>
+      <div class="modal-footer">        
+        <button type="button" class="btn btn-lg btn-danger pull-right" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 <script type="text/javascript">
-	
+	$('#exampleModal').on('show.bs.modal', function (event) {     
+  var name= $(event.relatedTarget).data('name');
+  var stock= $(event.relatedTarget).data('stock');
+	var price= $(event.relatedTarget).data('price');
+	var oferta= $(event.relatedTarget).data('oferta');
+	var imagen= $(event.relatedTarget).data('imagen');
+	var descripcion= $(event.relatedTarget).data('descripcion');
+	console.log(imagen);
+	$(event.currentTarget).find('#name-show').text(name);
+	$(event.currentTarget).find('#stock-show').val(stock);
+	$(event.currentTarget).find('#price-show').text('S/. '+price);
+	$(event.currentTarget).find('#oferta-show').val('S/. '+oferta);
+	$(event.currentTarget).find('#imagen-show').attr("src",imagen);
+	$(event.currentTarget).find('#descripcion-show').text(descripcion);
+	});
 	function agregar_carro(idp){
 
 		cant = $("#cant"+idp).val();
