@@ -1,4 +1,11 @@
 <?php
+	//Prueba envio correo
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+// Load Composer's autoloader
+require 'vendor/autoload.php';
 if(isset($_SESSION['id_cliente'])){
 	redir("./");
 }
@@ -13,13 +20,14 @@ if(isset($_SESSION['id_cliente'])){
 
 
 if(isset($enviar)){
-
+    
 	$nombre = clear($nombre);
 	$apellido = clear($apellido);
 	$email = clear($email);
 	$password = clear($password);
 	$cpassword = clear($cpassword);
 	$sexo = clear($sexo);
+	$direccion = clear($direccion);
 	$fechaNac= date("Y-m-d", strtotime(clear($fechaNac)));
 
 	$q = $mysqli->query("SELECT * FROM clientes WHERE email = '$email'");
@@ -39,15 +47,46 @@ if(isset($enviar)){
 	$mysqli->query("INSERT INTO clientes (nombres,apellidos,email,password,nacimiento,sexo,
 		direccion,inscripcion)
 		 VALUES 
-		('$nombre','$apellido' ,'$email','$password','$fechaNac','$sexo','' ,'$fechaNac')");
+		('$nombre','$apellido' ,'$email','$password','$fechaNac','$sexo','$direccion','$fechaNac')");
 
 	$q2 = $mysqli->query("SELECT * FROM clientes WHERE email = '$email'");
 
 	$r = mysqli_fetch_array($q2);
-
 	$_SESSION['id_cliente'] = $r['id'];
 
-	alert("Te has registrado satisfactoriamente",1,'principal');
+	
+     
+  
+$email_user = "electro.fisi@gmail.com";
+$email_password = "electrofisiadqui";
+$the_subject = "Bienvenido ";
+$address_to = $email;
+$from_name = "ELECTROFISI";
+$phpmailer = new PHPMailer();
+// ---------- datos de la cuenta de Gmail -------------------------------
+$phpmailer->Username = $email_user;
+$phpmailer->Password = $email_password; 
+//-----------------------------------------------------------------------
+// $phpmailer->SMTPDebug = 1;
+$phpmailer->SMTPSecure = 'ssl';
+$phpmailer->Host = "smtp.gmail.com"; // GMail
+$phpmailer->Port = 465;
+$phpmailer->IsSMTP(); // use SMTP
+$phpmailer->SMTPAuth = true;
+$phpmailer->setFrom($phpmailer->Username,$from_name);
+$phpmailer->AddAddress($address_to); // recipients email
+$phpmailer->Subject = $the_subject;	
+$phpmailer->Body .="<h1 style='color:#3498db;'>Bienvenido!</h1>";
+$phpmailer->Body .= "<p>Gracias por su registro ".$nombre." ".$apellido." </p>";
+$phpmailer->Body .= "<p>Por este medio se le estara enviando los ultimos productos y descuentos</p>";
+$phpmailer->Body .= "<p>Fecha y Hora: ".date("d-m-Y h:i:s")."</p>";
+$phpmailer->IsHTML(true);
+$phpmailer->Send();
+	
+
+	
+	//acaba prueba
+	 alert("Te has registrado satisfactoriamente y se le envio un correo",1,'principal');
 	redir("./?p=login");
 	die();
 	//redir("./");
@@ -86,6 +125,11 @@ if(isset($enviar)){
 
   </div>
 
+  <div class="form-group">
+    <label style="font-size: 18px;" for="exampleInputEmail1">Ingrese su dirección de domicilio</label>
+    <input type="text" style="font-size: 18px;" class="form-control" name="direccion" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Dirección" >
+
+  </div>
 
   <div class="form-row">
 	<div class="col"> 
