@@ -116,9 +116,9 @@ if(!isset($_SESSION['id'])){
   <header class="main-header">
     <!-- Logo -->
     <a href="index.php" class="logo">
-      <span class="logo-mini"><image src="https://external.xx.fbcdn.net/safe_image.php?d=AQBZOYeJYAT3bQ4a&w=960&h=960&url=https%3A%2F%2Fscontent.flim9-1.fna.fbcdn.net%2Fv%2Ft1.15752-9%2F62504861_2373546986260076_3488111737591300096_n.png%3F_nc_ht%3Dscontent.flim9-1.fna%26oh%3D2f9625a608f46f08f4b796a5f6bbcade%26oe%3D5DC4DB72&_nc_hash=AQARtHhoU7E_LRZc" weigth=30 width=30></image></span>
+      <span class="logo-mini"><image src="https://scontent.flim5-4.fna.fbcdn.net/v/t1.15752-9/75394799_478964576045803_3773004915564085248_n.png?_nc_cat=102&_nc_oc=AQmAQxAWZTkwBpu17MbBvYNLItaykKJEQiUb-hEqlOmzXumMU6BFu6AhLh2eonWTHao&_nc_ht=scontent.flim5-4.fna&oh=ca2e8502c67c1e5262a7fd3bf777707b&oe=5E53EF75" weigth=30 width=30></image></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Buy</b>FISI</span>
+      <span class="logo-lg"><b>Electro</b>FISI</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -151,50 +151,69 @@ if(!isset($_SESSION['id'])){
   </header>
   <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
+    <section class="sidebar">
       <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu">
+      <ul class="sidebar-menu tree" data-widget="tree">
         <li>
           <a href="./">
-            <i class="fa fa-th"></i> <span>Principal</span>
+            <i class="glyphicon glyphicon-home"></i> <span>Principal</span>
           </a>
         </li>
-        
-        <li>
-          <a href="./?p=agregar_producto">
-            <i class="fa fa-th"></i> <span>Administrar Productos</span>
+        <li id="treeview-crm" class="treeview">
+          <a href="#">
+            <i class="fa  fa-bar-chart"></i> <span>Módulos CRM</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
           </a>
-        </li>
-        
-        <li>
-          <a href="./?p=agregar_categoria">
-            <i class="fa fa-th"></i> <span>Administrar Categorias</span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="./?p=admin_clientes">
-            <i class="fa fa-th"></i> <span>Clientes</span>
-          </a>
-        </li>
+          <ul class="treeview-menu" style="display: none;">
+            <li><a href="./?p=crm_clientes"><i class="fa fa-pencil"></i>Clientes</a></li>
+            <li><a href="./?p=crm_productos"><i class="fa fa-pencil"></i>Productos</a></li>
+            <li><a href="./?p=crm_marketing"><i class="fa fa-facebook"></i>Marketing</a></li>
+          </ul>
+        </li> 
 
-        <li>
-          <a href="./?p=admin_admins">
-            <i class="fa fa-th"></i> <span>Administradores</span>
+        <li id="treeview-sistema-ventas" class="treeview">
+          <a href="#">
+            <i class="fa fa-cart-plus"></i> <span>Módulos Sistema de Ventas</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
           </a>
-        </li>
-
-        <li>
-          <a href="./?p=admin_pedidos">
-            <i class="fa fa-th"></i> <span>Pedidos</span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="./?p=pagos">
-            <i class="fa fa-th"></i> <span>Pagos</span>
-          </a>
-        </li>
-      </ul>
+          <ul class="treeview-menu" style="display: none;">            
+            <li>
+              <a href="./?p=agregar_producto">
+                <i class="glyphicon glyphicon-qrcode"></i> <span>Administrar Productos</span>
+              </a>
+            </li>        
+            <li>
+              <a href="./?p=agregar_categoria">
+                <i class="glyphicon glyphicon-tasks"></i> <span>Administrar Categorias</span>
+              </a>
+            </li>        
+            <li>
+              <a href="./?p=admin_clientes">
+                <i class="fa fa-user"></i> <span>Clientes</span>
+              </a>
+            </li>
+    <!--         <li>
+              <a href="./?p=admin_admins">
+                <i class="fa fa-user-plus"></i> <span>Administradores</span>
+              </a>
+            </li> -->
+            <li>
+              <a href="./?p=admin_pedidos">
+                <i class="fa fa-bars"></i> <span>Pedidos</span>
+              </a>
+            </li>        
+     <!--        <li>
+              <a href="./?p=pagos">
+                <i class="fa fa-th"></i> <span>Pagos</span>
+              </a>
+            </li> -->         
+          </ul>
+        </li> 
+      </ul>        
     </section>
     <!-- /.sidebar -->
   </aside>

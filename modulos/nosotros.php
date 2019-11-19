@@ -36,26 +36,23 @@
   <!-- Encabezado -->
     <div class="container-fluid">
         <div class="row">
-            <!-- Imagen y Titulo -->  
-            <div class="col-sm-5">          
-                <div class="container">
-                    <div class="row">
-                                <div>
-                                  <center>
-                                    <a style="text-decoration: none; font-size: 30px;" href="index.php">
-                                      BIENVENIDO A
-                                    </a>
-                              
-                                    
-               <a style="text-decoration: none;" href="index.php"><img src="https://scontent.flim5-4.fna.fbcdn.net/v/t1.15752-9/75513590_2155765694731744_4426643751980498944_n.png?_nc_cat=108&_nc_oc=AQmpi-5umKvrVwK7xhdV0V9KPAC8VAVXvLOH2PEw1QxmkCIldrUSiIc_SmkRttHid68&_nc_ht=scontent.flim5-4.fna&oh=02f94af1638c81ac2fbb6bf469d21f3e&oe=5E86EED6" width="400" height="100"> </a>
-                </center>
-              </div>               
-                    </div>
-              
-                </div>
-
-            </div> <!-- fin colsm5-->
-            <!-- Formulario Usuario y Contraseña Botones y la redireccion a recuperar contraseña -->            
+          <!-- Imagen y Titulo -->  
+          <div class="col-sm-5">          
+            <div class="container">
+              <div class="row">
+                <div>
+                  <center>
+                      <a style="text-decoration: none; font-size: 30px;" href="index.php">
+                        BIENVENIDO A
+                      </a>                                         
+                      <a style="text-decoration: none;" href="index.php"><img src="https://scontent.flim5-4.fna.fbcdn.net/v/t1.15752-9/75394799_478964576045803_3773004915564085248_n.png?_nc_cat=102&_nc_oc=AQmAQxAWZTkwBpu17MbBvYNLItaykKJEQiUb-hEqlOmzXumMU6BFu6AhLh2eonWTHao&_nc_ht=scontent.flim5-4.fna&oh=ca2e8502c67c1e5262a7fd3bf777707b&oe=5E53EF75" width="400" height="400"> 
+                      </a>
+                  </center>
+                </div>               
+              </div>              
+            </div>
+          </div> <!-- fin colsm5-->
+          <!-- Formulario Usuario y Contraseña Botones y la redireccion a recuperar contraseña -->           
             <div class="col-sm-7"> 
             <h2>Aqui unas fotos de proyectos realizados gracias a ElectroFISI</h2>  
             <p></br></p>
