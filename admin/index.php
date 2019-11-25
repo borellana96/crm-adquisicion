@@ -71,8 +71,10 @@ if(!isset($_SESSION['id'])){
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Administrador</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
   <!-- Bootstrap 3.3.6 -->
   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
   <!-- Font Awesome -->
@@ -98,8 +100,6 @@ if(!isset($_SESSION['id'])){
   <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="../css/estilo.css">
-
-
   <link rel="stylesheet" href="../fontawesome/css/all.css"/>
   <script type="text/javascript" src="../fontawesome/js/all.js"></script>
 
@@ -115,36 +115,41 @@ if(!isset($_SESSION['id'])){
 
   <header class="main-header">
     <!-- Logo -->
-    <a href="index.php" class="logo">
+    <a href="index.php" class="logo" style="max-height: 100px; height: 45px;">
       <span class="logo-mini"><image src="https://scontent.flim5-4.fna.fbcdn.net/v/t1.15752-9/75394799_478964576045803_3773004915564085248_n.png?_nc_cat=102&_nc_oc=AQmAQxAWZTkwBpu17MbBvYNLItaykKJEQiUb-hEqlOmzXumMU6BFu6AhLh2eonWTHao&_nc_ht=scontent.flim5-4.fna&oh=ca2e8502c67c1e5262a7fd3bf777707b&oe=5E53EF75" weigth=30 width=30></image></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Electro</b>FISI</span>
+      <span class="logo-lg">
+        <b>Electro</b>FISI</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
-    <nav class="navbar navbar-static-top">
+    <nav class=" navbar-static-top" style="height: 45px; background-color: #3c8dbc">
       <!-- Sidebar toggle button-->
-      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+      <!-- <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
         <span class="sr-only">Toggle navigation</span>
-      </a>
-      <div class="navbar-custom-menu">
-        <ul class="nav navbar-nav">         
+      </a> -->
+      <div class="float-right">
+        <ul class="list-inline">         
           <!-- User Account: style can be found in dropdown.less -->
-          <li class="dropdown user user-menu">
+          <li class="dropdown user user-menu"  >
+            
+            <a href=""></a>
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <span class="hidden-xs"><?=admin_name_connected()?></span>
             </a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu list-inline">
               <!-- Menu Footer-->
-              <li class="user-footer">
+              <li class="user-footer list-inline-item" style="list-style: none;">
                 <center>
                   <div>
-                    <a href="?p=logout&id=<?$q=['id']?>" name="cerrarsesion" class="btn btn-default btn-flat">Cerrar Sesion</a>
+                    <a href="?p=logout&id=<?$q=['id']?>" name="cerrarsesion" class="btn btn-default">Cerrar Sesion</a>
                   </div>
                 </center>
               </li>
             </ul>
           </li>
-          
+          <li class="list-inline-item">
+            <div> &nbsp;</div>                
+          </li>         
         </ul>
       </div>
     </nav>
@@ -161,15 +166,21 @@ if(!isset($_SESSION['id'])){
         </li>
         <li id="treeview-crm" class="treeview">
           <a href="#">
-            <i class="fa  fa-bar-chart"></i> <span>Módulos CRM</span>
+            <i class="glyphicon glyphicon-indent-right"></i> <span>Módulos CRM</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu" style="display: none;">
-            <li><a href="./?p=crm_clientes"><i class="fa fa-pencil"></i>Clientes</a></li>
-            <li><a href="./?p=crm_productos"><i class="fa fa-pencil"></i>Productos</a></li>
-            <li><a href="./?p=crm_marketing"><i class="fa fa-facebook"></i>Marketing</a></li>
+            <li><a href="./?p=crm_clientes"><i class="fa fa-user"></i>&nbsp;&nbsp;
+            Clientes</a></li>
+            <li><a href="./?p=crm_productos"><i class="glyphicon glyphicon-qrcode"></i>
+            Productos</a></li>
+            <li><a href="./?p=crm_marketing"><i class="glyphicon glyphicon-signal"></i>
+            Marketing</a></li>
+            <li><a href="./?p=crm_modulo-fidelizacion"><i class="glyphicon glyphicon-gift"></i>
+            Fidelización del Cliente</a>
+            </li>
           </ul>
         </li> 
 
@@ -287,23 +298,9 @@ if(!isset($_SESSION['id'])){
       <!-- /.row -->
       <!-- Main row -->
       <div class="row">
-        <!-- Left col -->
-        <section class="col-lg-7 connectedSortable">
+        <section class="col-lg-7 ">
           <!-- Custom tabs (Charts with tabs)-->
-          <center>
-          <div class="row">
-            <div class="nav-tabs-custom">            
-              <div>
-                <h3 class="box-title"><p>&nbsp;<h2>Ventas</h2></p></h3>
-              </div>
-              <div class="tab-content no-padding">
-                <!-- Morris chart - Sales -->
-                <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;"></div>
-                <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;"></div>
-              </div>
-              <!-- /.nav-tabs-custom -->              
-            </div>
-          </center>
+          <h1>Pruebita</h1>
         </section>
       </div>
       <!-- /.row (main row) -->
