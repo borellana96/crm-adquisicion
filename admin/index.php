@@ -88,8 +88,10 @@ if(!isset($_SESSION['id'])){
   <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
   <!-- iCheck -->
   <link rel="stylesheet" href="plugins/iCheck/flat/blue.css">
+   <!-- HighCharts -->
+  <script src="https://code.highcharts.com/highcharts.js"></script>
   <!-- Morris chart -->
-  <link rel="stylesheet" href="plugins/morris/morris.css">
+  <!-- <link rel="stylesheet" href="plugins/morris/morris.css"> -->
   <!-- jvectormap -->
   <link rel="stylesheet" href="plugins/jvectormap/jquery-jvectormap-1.2.2.css">
   <!-- Date Picker -->
@@ -298,10 +300,14 @@ if(!isset($_SESSION['id'])){
       <!-- /.row -->
       <!-- Main row -->
       <div class="row">
-        <section class="col-lg-7 ">
-          <!-- Custom tabs (Charts with tabs)-->
-          <h1>Pruebita</h1>
-        </section>
+        <div class="col-lg-6">
+          <div id="container" style="width:100%; height:400px;">
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div id="container2" style="width:100%; height:400px;">
+          </div>
+        </div>
       </div>
       <!-- /.row (main row) -->
 
@@ -338,8 +344,8 @@ if(!isset($_SESSION['id'])){
 <!-- Bootstrap 3.3.6 -->
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <!-- Morris.js charts -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-<script src="plugins/morris/morris.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="plugins/morris/morris.min.js"></script> -->
 <!-- Sparkline -->
 <script src="plugins/sparkline/jquery.sparkline.min.js"></script>
 <!-- jvectormap -->
@@ -361,8 +367,9 @@ if(!isset($_SESSION['id'])){
 <!-- AdminLTE App -->
 <script src="dist/js/app.min.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="dist/js/pages/dashboard.js"></script>
+<!-- <script src="dist/js/pages/dashboard.js"></script> -->
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+<script src="dist/js/principal.js"></script>
 </body>
 </html>
