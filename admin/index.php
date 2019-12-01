@@ -240,7 +240,7 @@ if(!isset($_SESSION['id'])){
     <!-- Content Header (Page header) -->
 
     <?php
-
+    $p = $_GET['p'];
     if(!isset($p)){
     ?>
 

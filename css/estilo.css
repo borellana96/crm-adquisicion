@@ -131,3 +131,15 @@ a{
 	display:inline-block;
 	padding:5px;
 }
+
+.detalles{
+	color: #000;
+}
+
+.derecha{
+	float: right;
+}
+.izquierda{
+	float: left;
+	width: 50%;
+}

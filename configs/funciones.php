@@ -3,7 +3,7 @@
 
 $host_mysql = "localhost";
 $user_mysql = "root";
-$pass_mysql = "root";
+$pass_mysql = "";
 $db_mysql = "bdihc";
 $mysqli = mysqli_connect($host_mysql,$user_mysql,$pass_mysql,$db_mysql);
 	
@@ -72,7 +72,7 @@ function nombre_cliente($id_cliente){
 function connect(){
 	$host_mysql = "localhost";
 	$user_mysql = "root";
-	$pass_mysql = "root";
+	$pass_mysql = "";
 	$db_mysql = "bdihc";
 
 
