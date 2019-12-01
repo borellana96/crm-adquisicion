@@ -60,7 +60,12 @@ Highcharts.chart('container-productos-ventas-linear', {
     },
     series: [
     <?php 
-			for ($i = 1; $i <= 6; $i++) {
+
+    	$res=$mysqli->query("SELECT count(*) FROM productos");
+      $row = mysqli_fetch_row($res); 
+      $num_productos = $row[0];
+
+			for ($i = 1; $i <= $num_productos; $i++) {
 			    $res=$mysqli->query("SELECT name FROM productos where id=$i");
         	$row = mysqli_fetch_row($res); 
         	$producto = $row[0];

@@ -31,23 +31,6 @@ check_admin();
 				</div>
 			</div>
 				<br>
-			<div class="row">
-				<div class="col-md-10">
-					<div id="container-productos-ventas-linear"> <!-- venta - categoria -->						
-					</div>			
-				</div>
-			</div>	
-			<br>
-			<div class="row">
-				<div class="col-md-5">
-					<div id="container-productos-ventas"> <!-- venta - categoria -->					
-					</div>			
-				</div>
-				<div class="col-md-5"><!--  productos preferidas -->
-					<div id="container-productos-preferencia"> <!-- venta - categoria -->					
-					</div>
-				</div>
-			</div>	
 </div>
 <script>
 	Highcharts.chart('container-categorias-ventas-linear', {
@@ -78,7 +61,10 @@ check_admin();
     },
     series: [
     <?php 
-			for ($i = 1; $i <= 2; $i++) {
+      $res=$mysqli->query("SELECT count(*) FROM categorias");
+      $row = mysqli_fetch_row($res); 
+      $num_categorias = $row[0];
+			for ($i = 1; $i <= $num_categorias; $i++) {
 
 			    $res=$mysqli->query("SELECT nombre FROM categorias where id=$i");
         	$row = mysqli_fetch_row($res); 

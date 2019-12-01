@@ -1,8 +1,5 @@
 <?php
 check_admin();
-
-
-//select from facebook if equal nothing else save
 ?>
 <div class="container">
 		<h3>Redes Sociales</h3>

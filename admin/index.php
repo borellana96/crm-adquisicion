@@ -240,10 +240,9 @@ if(!isset($_SESSION['id'])){
     <!-- Content Header (Page header) -->
 
     <?php
-    $p = $_GET['p'];
+    //$p2 = $_GET['p'];
     if(!isset($p)){
     ?>
-
     <!-- Main content -->
     <section class="content">
       <!-- Small boxes (Stat box) -->
