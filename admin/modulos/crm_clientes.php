@@ -6,6 +6,7 @@ check_admin();
 	<h1>Modulo CRM CLientes</h1><br><br>
 	<h2>Aquí estará una lista con los clientes que más han gastado en la empresa.</h2> 	
 	<h2>Lista de los que gastaron menos.</h2>
+	<h2>Aquí también irá población rango de edad Chart</h2>
 	<h2>Cada cliente tendrá su Detalle
 	información básica, productos preferidos en torta y últimas compras</h2>
 

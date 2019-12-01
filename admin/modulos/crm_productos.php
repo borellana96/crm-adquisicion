@@ -1,92 +1,116 @@
 <?php
 check_admin();
 ?>
-<h3>Aquí se tendrá una lista de los productos más comprados y los menos comprados así como
-las categorías más compradas y las menos compradas</h3>
+
 <div class="container">
+	<h3>CATEGORIAS ELECTRO FISI</h3>
 	<div class="row">
-		<div class="col-md-5">
-			<div id="container-categorias-ventas"> <!-- venta - categoria -->
-				
-			</div>			
-		</div>
-		<div class="col-md-5"><!--  categorias preferidas -->
-			<div id="container-categorias-preferencia"> <!-- venta - categoria -->
-				
+		<div class="col-lg-3">
+			<nav class="nav"  style="background-color: #1FB3BF;">
+			  <a class="nav-link "  href="./?p=crm_productos">Categorias</a>
+			  <a class="nav-link active" href="./?p=crm_productos_cat">Productos</a>
+			  <a class="nav-link " href="./?p=crm_productos_top">Top</a>
+			</nav>	
+		</div>		
+	</div>
+		<div class="row">
+			<div class="col-md-10">
+				<div id="container-categorias-ventas-linear"> <!-- venta - categoria -->			
+				</div>			
 			</div>
 		</div>
-	</div>
-	<br>
-	<div class="row">
-		<div class="col-lg-10">
-			<table class="table table-bordered">
-				<tr class="thead-dark">
-					<th>Nombre</th>
-					<th>Precio</th>
-					<th>Descuento</th>
-					<th>Precio Total</th>
-					<th>Imagen</th>
-					<th>Categoria</th>
-					<th>Stock</th>
-					<th>Acciones</th>
-				</tr>
-				<?php
-					$prod = $mysqli->query("SELECT * FROM productos ORDER BY id DESC");
-					while($rp=mysqli_fetch_array($prod)){
-						$preciototal = 0;
-						$cat = $mysqli->query("SELECT * FROM categorias WHERE id = '".$rp['id_categoria']."'");
-						if(mysqli_num_rows($cat)>0){
-							$rcat = mysqli_fetch_array($cat);
-							$categoria = $rcat['nombre'];
-						}else{
-							$categoria = "--";
-						}
-						if($rp['oferta']>0){
-							if(strlen($rp['oferta'])==1){
-								$desc = "0.0".$rp['oferta'];
-							}else{
-								$desc = "0.".$rp['oferta'];
-							}
-
-							$preciototal = $rp['price'] -($rp['price'] * $desc);
-						}else{
-							$preciototal = $rp['price'];
-						}
-						?>
-							<tr>
-								<td><?=$rp['name']?></td>
-								<td><?=$rp['price']?></td>
-								<td>
-									<?php
-										if($rp['oferta']>0){
-											echo $rp['oferta']."% de Descuento";
-										}else{
-											echo "Sin descuento";
-										}
-									?>
-								</td>
-								<td><?=$preciototal?></td>
-								<td><img src="<?=$rp['imagen']?>" class="imagen_carro"/></td>
-								<td><?=$categoria?></td>
-								<td><?=$rp['stock']?></td>
-								<td>									
-									<a style="color:#08f" href="?p=modificar_producto&id=<?=$rp['id']?>"><i class="fa fa-edit"></i></a>
-									&nbsp;
-									<a style="color:#08f" href="?p=agregar_producto&eliminar=<?=$rp['id']?>"><i class="fa fa-times"></i></a>
-								</td>
-							</tr>
-						<?php
-					}
-				?>
-
-			</table>		
-			
-		</div>
-		
-	</div>
-	
+		<br>
+			<div class="row">
+				<div class="col-md-5">
+					<div id="container-categorias-ventas"> <!-- venta - categoria -->					
+					</div>			
+				</div>
+				<div class="col-md-5"><!--  categorias preferidas -->
+					<div id="container-categorias-preferencia"> <!-- venta - categoria -->					
+					</div>
+				</div>
+			</div>
+				<br>
+			<div class="row">
+				<div class="col-md-10">
+					<div id="container-productos-ventas-linear"> <!-- venta - categoria -->						
+					</div>			
+				</div>
+			</div>	
+			<br>
+			<div class="row">
+				<div class="col-md-5">
+					<div id="container-productos-ventas"> <!-- venta - categoria -->					
+					</div>			
+				</div>
+				<div class="col-md-5"><!--  productos preferidas -->
+					<div id="container-productos-preferencia"> <!-- venta - categoria -->					
+					</div>
+				</div>
+			</div>	
 </div>
 <script>
+	Highcharts.chart('container-categorias-ventas-linear', {
+    chart: {
+        type: 'line'
+    },
+    title: {
+        text: 'Ventas por categoría Mensual - 2019'
+    },
+    subtitle: {
+        text: 'Source: ElectroFisi.com'
+    },
+    xAxis: {
+        categories: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Set', 'Oct', 'Nov', 'Dec']
+    },
+    yAxis: {
+        title: {
+            text: 'Monto Ventas'
+        }
+    },
+    plotOptions: {
+        line: {
+            dataLabels: {
+                enabled: true
+            },
+            enableMouseTracking: false
+        }
+    },
+    series: [
+    <?php 
+			for ($i = 1; $i <= 2; $i++) {
+
+			    $res=$mysqli->query("SELECT nombre FROM categorias where id=$i");
+        	$row = mysqli_fetch_row($res); 
+        	$categoria = $row[0];
+					$cat = $mysqli->query("SELECT ifnull(t1.monto,0) as  monto
+							from meses 	LEFT JOIN (
+						SELECT MONTH(fecha) AS mes , cd.monto as monto 
+							FROM pedidos p 
+							INNER JOIN compra_detalle cd ON p.id = cd.id_pedido
+					    INNER JOIN productos pr ON pr.id =cd.id_producto 
+					    WHERE pr.id_categoria = $i					    		
+					    GROUP BY mes ) as t1 on meses.id = t1.mes ");		
+
+		?>
+			{		name: "<?php echo $categoria;?>"	,
+					data: [
+			
+						<?php 						
+						while($ct=mysqli_fetch_row($cat)){
+						?>	
+							<?php echo round($ct[0]); ?> ,						
+						<?php 
+							}
+						?>
+					 ]
+			},
+		<?php
+			}
+    ?>
+    ]
+});
+
 	Highcharts.chart('container-categorias-ventas', {
     chart: {
         plotBackgroundColor: null,

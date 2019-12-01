@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `bdihc`.`pedidos` (
   `id_cliente` INT NOT NULL COMMENT '',
   `fecha` DATETIME NULL DEFAULT CURRENT_TIMESTAMP COMMENT '',
   `direccion` VARCHAR(255) NOT NULL COMMENT '',
-  `monto` FLOAT NOT NULL COMMENT '',
+  `monto` FLOAT  NULL COMMENT '',
   `estado` INT NOT NULL DEFAULT 0 COMMENT '',
   PRIMARY KEY (`id`, `id_cliente`)  COMMENT '',
   INDEX `fk_pedidos_clientes_idx` (`id_cliente` ASC)  COMMENT '',
@@ -146,7 +146,7 @@ CREATE TABLE IF NOT EXISTS `bdihc`.`compra_detalle` (
   `id_pedido` INT NOT NULL COMMENT '',
   `id_producto` INT NOT NULL COMMENT '',
   `cantidad` INT NOT NULL COMMENT '',
-  `monto` FLOAT NOT NULL COMMENT '',
+  `monto` FLOAT NULL COMMENT '',
   PRIMARY KEY (`id`, `id_pedido`, `id_producto`)  COMMENT '',
   INDEX `fk_compra_detalle_pedidos1_idx` (`id_pedido` ASC)  COMMENT '',
   INDEX `fk_compra_detalle_productos1_idx` (`id_producto` ASC)  COMMENT '',
@@ -185,11 +185,39 @@ CREATE TABLE IF NOT EXISTS `bdihc`.`calificaciones` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+CREATE TABLE IF NOT EXISTS `bdihc`.`meses` (
+  `id` INT NOT NULL AUTO_INCREMENT COMMENT '',
+  `mes` VARCHAR(255) NOT NULL COMMENT '',
+  PRIMARY KEY (`id`)  COMMENT '')
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `bdihc`.`facebook` (
+  `id` INT NOT NULL AUTO_INCREMENT COMMENT '',
+  `fecha` DATETIME NOT NULL COMMENT '',
+  `likes` INT NOT NULL COMMENT '',
+  `posts` INT NOT NULL COMMENT '',
+  `mensajes_unread` INT NOT NULL COMMENT '',  
+  PRIMARY KEY (`id`)  COMMENT '')
+ENGINE = InnoDB;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+insert into meses values(1,"Enero");
+insert into meses values(2,"Febrero");
+insert into meses values(3,"Marzo");
+insert into meses values(4,"Abril");
+insert into meses values(5,"Mayo");
+insert into meses values(6,"Junio");
+insert into meses values(7,"Julio");
+insert into meses values(8,"Agosto");
+insert into meses values(9,"Setiembre");
+insert into meses values(10,"Noviembre");
+insert into meses values(11,"Noviembre");
+insert into meses values(12,"Diciembre");
+  
 INSERT INTO `admins` VALUES (1, 'admin', 'admin', 'admin', 'admin', '2019-06-18 02:11:33');
 INSERT INTO `categorias` VALUES (1, 'Frutas');
 INSERT INTO `categorias` VALUES (2, 'Tecnologia');
@@ -203,4 +231,6 @@ INSERT INTO `productos` VALUES (5, 60, 'https://naylampmechatronics.com/1646-lar
 INSERT INTO `pedidos` VALUES (1, 1, '2019-06-18 03:02:40', 'Ez', 4000, 1);
 INSERT INTO `compra_detalle` VALUES (1, 1, 2, 4, 1000);
 INSERT INTO `facturas` VALUES (1, 1, '1478546');
+
+
 
